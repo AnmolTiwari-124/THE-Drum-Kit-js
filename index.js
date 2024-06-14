@@ -1,16 +1,4 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
-    // Create an object that maps each button class to its corresponding audio file
-    const audioFiles = {
-        w: "sounds/tom-1.mp3",
-        a: "sounds/tom-2.mp3",
-        s: "sounds/tom-3.mp3",
-        d: "sounds/tom-4.mp3",
-        j: "sounds/snare.mp3",
-        k: "sounds/crash.mp3",
-        l: "sounds/kick-bass.mp3"
-    };
     // Select all buttons with the class 'drum'
     var buttons = document.querySelectorAll(".drum");
 
@@ -19,17 +7,84 @@ document.addEventListener("DOMContentLoaded", function() {
         buttons[i].addEventListener("click", function() {
             // Get the class name (which corresponds to the key) from the button
             var key = this.classList[0];
+            // we can use innerhtml instead of this.class[0];
+            // like this var buttonhtml  = this.innerhtml 
+            // and then pass the value of innerhtml in the switch statement 
 
-            // Get the corresponding audio file from the audioFiles object
-            var audioSrc = audioFiles[key];
+
+            // Use a switch statement to get the corresponding audio file
+            var audioSrc;
+            switch (key) {
+                case 'w':
+                    audioSrc = "sounds/tom-1.mp3";
+                    break;
+                case 'a':
+                    audioSrc = "sounds/tom-2.mp3";
+                    break;
+                case 's':
+                    audioSrc = "sounds/tom-3.mp3";
+                    break;
+                case 'd':
+                    audioSrc = "sounds/tom-4.mp3";
+                    break;
+                case 'j':
+                    audioSrc = "sounds/snare.mp3";
+                    break;
+                case 'k':
+                    audioSrc = "sounds/crash.mp3";
+                    break;
+                case 'l':
+                    audioSrc = "sounds/kick-bass.mp3";
+                    break;
+                default:
+                    return; // Exit the function if the key is not recognized
+            }
 
             // Create a new audio object and set its source
             var audio = new Audio(audioSrc);
 
-
+            // Reset audio playback and play the sound
             audio.currentTime = 0;
-            // Play the audio
             audio.play();
         });
     }
 });
+
+document.addEventListener("keydown", function(event) {
+    // Use a switch statement to get the corresponding audio file
+    // 
+    var audioSrc;
+    switch (event.key) {
+        case 'w':
+            audioSrc = "sounds/tom-1.mp3";
+            break;
+        case 'a':
+            audioSrc = "sounds/tom-2.mp3";
+            break;
+        case 's':
+            audioSrc = "sounds/tom-3.mp3";
+            break;
+        case 'd':
+            audioSrc = "sounds/tom-4.mp3";
+            break;
+        case 'j':
+            audioSrc = "sounds/snare.mp3";
+            break;
+        case 'k':
+            audioSrc = "sounds/crash.mp3";
+            break;
+        case 'l':
+            audioSrc = "sounds/kick-bass.mp3";
+            break;
+        default:
+            return; // Exit the function if the key is not recognized
+    }
+
+    // Create a new audio object and set its source
+    var audio = new Audio(audioSrc);
+
+    // Reset audio playback and play the sound
+    audio.currentTime = 0;
+    audio.play();
+});
+
